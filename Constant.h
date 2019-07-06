@@ -45,3 +45,10 @@
 #define GREEN 6
 #define PURPLE 5
 
+
+//Constant
+#define MAX_CLASS 5000
+#define MAX_STUDENT 80
+#define MIN_STUDENT 30
+#define MAX_SUBJECT 10
+#define QUANTITY_PER_PAGE 5
