@@ -52,3 +52,4 @@
 #define MIN_STUDENT 30
 #define MAX_SUBJECT 10
 #define QUANTITY_PER_PAGE 5
+#define MAX_LENGTH 15

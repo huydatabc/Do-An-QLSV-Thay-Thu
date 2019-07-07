@@ -6,7 +6,7 @@ int nSubject;
 
 int pageNowCreditClass = 1;
 int totalPageCreditClass = 0;
-
+unsigned int arrCreditClassId[5000]
 
 
 

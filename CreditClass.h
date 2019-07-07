@@ -4,7 +4,7 @@
 #include "Student.h"
 #include "Validate.h"
 struct CreditClass{
-	int idClass;
+	unsing int idClass;
 	char[10] idSubject; // ma mon hoc
 	int shoolYear; // nien khoa
 	int semester; // hoc ki
@@ -41,6 +41,20 @@ PTR_CLASS FindClass(PTR_LIST_CLASS l, int id)
 		return NULL;
 	}
 }
+
+
+// find class with idSubject
+PTR_CLASS FindClassWithIdSubject(PTR_LIST_CLASS l, char* idSuject)
+{
+	if(l->n < 0) return NULL;
+	for(int i = 0; i< l->n; i++)
+	{
+		if(_stricmp(l->listClass[i].idSubject, idSuject) == 0)
+			return l->listClass[i];
+		return NULL;
+	}
+}
+
 
 // find index of class -- tim kiem index cua class
 int FindIndexClass(PTR_LIST_CLASS l, int idClass)
@@ -115,21 +129,23 @@ bool DeleteCreditClassIsSuccess(PTR_LIST_CLASS &l, int id)
 	return true;
 }
 
-void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited = false)
+void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited)
 {
 	ShowCur(true);
+	
+	// cac flag dieu khien qua trinh cap nhat
 	int ordinal = 0;
 	bool isMoveUp = false;
 	bool isSave = false;
 	
-	int id;
-	char[10] idSubject; // ma mon hoc
+	unsigned int id = 0;
+	string idSubject; // ma mon hoc
 	int shoolYear; // nien khoa
 	int semester; // hoc ki
 	int group; // nhom
 	int studentMax;
 	int studentMin;
-	bool idIsExit = false;
+	bool idIsExist = false;
 	if(isEdited)
 	{
 		id = cc->idClass;
@@ -170,10 +186,16 @@ void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited = false)
 		switch(ordinal)
 		{
 			case 0:
-				CheckMoveAndValidateNumber(studentMax, isMoveUp, ordinal, isSave, 6, MAX_STUDENT);
-				CheckMoveAndValidateNumber(studentMin, isMoveUp, ordinal, isSave, 6, MIN_STUDENT);
-				break;
+				{
+				
+				}
+				
 			case 1:
+				{
+					
+				}
+			case 2:
+				
 				
 		}
 	}
