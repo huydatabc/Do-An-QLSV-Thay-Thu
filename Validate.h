@@ -7,12 +7,15 @@
 #include <Windows.h>
 
 
-
+#include <iomanip>
 #include "Lib.h"
 #include "Constant.h"
 #include "GlobalVariable.h"
 
 using namespace std;
+
+/*
+
 
 unsigned int ValidateIdentityCard()
 {
@@ -230,6 +233,8 @@ void CheckMoveAndValidateIdentityCard(unsigned int &result, bool &isMove, int &o
 	} // while true
 
 }
+
+*/
 
 
 

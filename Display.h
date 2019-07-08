@@ -94,14 +94,7 @@ int ChooseMainMenu(string key[], int nKey)
 	}
 }
 
-void DeleteOldData(int nKey, int locate) // xoa giu lieu cu
-{
-	for (int i = 0; i < nKey; i++)
-	{
-		Gotoxy(xKeyDisplay[i] + 1, Y_DISPLAY + 3 + locate);
-		cout << setw(xKeyDisplay[i + 1] - xKeyDisplay[i]-2) << setfill(' ') << " ";		
-	}
-}
+
 
 //------------------------END MENU-----------
 
@@ -112,6 +105,8 @@ string keyDisplayCreaditClass[7] = {"Ma Lop", "Ma Mon Hoc", "Nien Khoa", "Hoc Ki
 string keyDisplayStudent[7] = { "Ma Sinh Vien", "Ma Lop","Ho","Ten","Phai", "So DT", "Nam Nhap hoc" };
 
 int xKeyDisplay[6] = { 5,25,50,70,90,105 };
+
+
 
 
 void DisplayEdit(string key[], int nKey,int length)
@@ -225,100 +220,10 @@ void DeleteOldData(int nKey, int locate)
 	{
 		Gotoxy(xKeyDisplay[i] + 1, Y_DISPLAY + 3 + locate);
 		cout << setw(xKeyDisplay[i + 1] - xKeyDisplay[i]-2) << setfill(' ') << " ";
+	}
 }
 
-void Display(string key[], int nKey)
-{
-	
-	//show key
-	for (int i = 0; i < nKey; i++)
-	{
-		Gotoxy(xKeyDisplay[i] + 3, Y_DISPLAY+ 1);
-		cout << key[i];
-	}
-
-	//show column 2 side
-	for (int j = Y_DISPLAY; j <= Y_DISPLAY + 40; j++)
-	{
-		for (int i = 0; i < nKey+1; i++)
-		{
-			Gotoxy(xKeyDisplay[i], j);
-			cout << char(186);
-		}
-	}
-
-	//border left->right
-	for (int i = xKeyDisplay[0]; i <= xKeyDisplay[nKey]; i++)
-	{
-		//border top (key)
-		Gotoxy(i, Y_DISPLAY);
-		if (i == xKeyDisplay[1] || i == xKeyDisplay[2] || i == xKeyDisplay[3] || i == xKeyDisplay[4])
-			cout << char(203);//nga 3
-		else if (i == xKeyDisplay[0])
-		{
-			cout << char(201); //moc phai
-		}
-		else if (i == xKeyDisplay[nKey])
-		{
-			cout << char(187);//moc trai
-		}  
-		else
-		{
-			cout << char(205); //duong thang ngang
-		}
-
-		//border bottom(key)
-		Gotoxy(i, Y_DISPLAY + 2);
-		if (i == xKeyDisplay[1] || i == xKeyDisplay[2] || i == xKeyDisplay[3] || i == xKeyDisplay[4])
-			cout << char(206); //nga 4
-		else if (i == xKeyDisplay[0])
-		{
-			cout << char(204); //nga 3 sang phai
-		}
-		else if (i == xKeyDisplay[nKey])
-		{
-			cout << char(185);//nga 3 sang trai
-		}
-		else
-		{
-			cout << char(205); //duong thang ngang
-		}
 
 
-		//border top (note)
-		Gotoxy(i, Y_DISPLAY + 39);
-		if (i == xKeyDisplay[nKey])
-		{
-			cout << char(185); //nga 3 sang trai
-		}
-		else if (i == xKeyDisplay[1] || i == xKeyDisplay[2] || i == xKeyDisplay[3] || i == xKeyDisplay[4])
-			cout << char(202);
-		else if (i == xKeyDisplay[0])
-			cout << char(204); //nga 3 sang phai
-		else
-		{
-			cout << char(205); //duong thang ngang
-		}
-
-
-		//border bottom (note)
-		Gotoxy(i, Y_DISPLAY + 41);
-		if (i == xKeyDisplay[0])
-		{
-			cout << char(200); //qeo sang phai
-		}
-		else if (i == xKeyDisplay[nKey])
-		{
-			cout << char(188); //qeo sang trai
-		}
-		else
-		{
-			cout << char(205); //duong thang ngang
-		}
-	}
-	// SHOW note
-	Gotoxy(xKeyDisplay[0] + 1, Y_DISPLAY + 40);
-	cout << setw(xKeyDisplay[nKey] - xKeyDisplay[0]-1) << "F2: them F3: Xoa F4: Hieu Chinh F10: Save" << setfill(' ');
-}
 
 #endif

@@ -1,8 +1,6 @@
 #ifndef _STUDENT_H
 #define _STUDENT_H
-#include "Validate.h"
-#include<stdio.h>
-#include<string.h>
+#include"Subject.h"
 
 struct student{
 	char idStudent[12];
@@ -55,7 +53,7 @@ void AddHeadListStudent(LIST_STUDENT &l, STUDENT data)
 {
 	NODE_STUDENT* p = GetNodeStudent(data);
 	
-	p->pNext = l->pHead;
+	p->pNext = l.pHead;
 	l.pHead = p;
 	++l.n;
 }
@@ -108,7 +106,7 @@ int FindIndexStudent(LIST_STUDENT l, char *id)
 void InsertAfter(NODE_STUDENT* p, STUDENT &data)
 {
 	if(p == NULL) return;
-	NODE_STUDENT* p = new NODE_STUDENT;
+	NODE_STUDENT* q = new NODE_STUDENT;
 	
 	q->data = data;
 	q->pNext = p->pNext;

@@ -1,8 +1,9 @@
 #ifndef _SUBJECT_H
 #define _SUBJECT_H
-
+#include "Validate.h"
+#include "Display.h"
 struct Subject{
-	unsigned int id = 0;
+	unsigned int id;
 	char idSubject[10]; // ma mon hoc
 	char nameSubject[30]; 
 	int numberTheory;
@@ -73,7 +74,7 @@ void InsertSubjectToTree(TREE_SUBJECT &t, SUBJECT data)
 	if(t == NULL)
 	{
 		NODE_SUBJECT* p = new NODE_SUBJECT;
-		p->data = x;
+		p->data = data;
 		p->pLeft = p->pRight = NULL;
 		t = p;
 	}
@@ -81,7 +82,7 @@ void InsertSubjectToTree(TREE_SUBJECT &t, SUBJECT data)
 	{
 		if(data.id < t->data.id)
 			InsertSubjectToTree(t->pLeft, data);
-		else if(data.id > t->data.idSubject)
+		else if(data.id > t->data.id)
 			InsertSubjectToTree(t->pRight, data);
 	}
 }
@@ -91,7 +92,7 @@ void FindReplace(NODE_SUBJECT* &p, NODE_SUBJECT* &q)
 {
 	if(q->pRight != NULL)
 	{
-		FindReplace(p, q->pRight)
+		FindReplace(p, q->pRight);
 	}else
 	{
 		p->data = q->data;

@@ -1,11 +1,11 @@
 #ifndef _CREDITCLASS_H
 #define _CREDITCLASS_H
-#include "Display.h"
+
 #include "Student.h"
-#include "Validate.h"
+
 struct CreditClass{
-	unsing int idClass;
-	char[10] idSubject; // ma mon hoc
+	unsigned int idClass;
+	char idSubject[10]; // ma mon hoc
 	int shoolYear; // nien khoa
 	int semester; // hoc ki
 	int group; // nhom
@@ -36,7 +36,7 @@ PTR_CLASS FindClass(PTR_LIST_CLASS l, int id)
 	if(l->n < 0) return NULL;
 	for(int i = 0; i< l->n; i++)
 	{
-		if(l->listClass[i].idClass == id)
+		if(l->listClass[i]->idClass == id)
 			return l->listClass[i];
 		return NULL;
 	}
@@ -49,7 +49,7 @@ PTR_CLASS FindClassWithIdSubject(PTR_LIST_CLASS l, char* idSuject)
 	if(l->n < 0) return NULL;
 	for(int i = 0; i< l->n; i++)
 	{
-		if(_stricmp(l->listClass[i].idSubject, idSuject) == 0)
+		if(_stricmp(l->listClass[i]->idSubject, idSuject) == 0)
 			return l->listClass[i];
 		return NULL;
 	}
@@ -62,14 +62,14 @@ int FindIndexClass(PTR_LIST_CLASS l, int idClass)
 	if(l->n < 0) return -1;
 	for(int i = 0; i< l->n; i++)
 	{
-		if(l->listClass[i].idClass == idClass)
+		if(l->listClass[i]->idClass == idClass)
 			return i;
 		return -1;
 	}
 }
 
 //check when input
-void DataCreditClassIsEmty(PTR_CLASS cc)
+bool DataCreditClassIsEmty(PTR_CLASS cc)
 {
 	if (cc->listStudent.n == 0) return true;
 	
@@ -83,6 +83,7 @@ void SwapClass(PTR_CLASS &a, PTR_CLASS &b)
 	b = temp;
 }
 
+/*
 void OutputCreditClass(PTR_CLASS cc, int ordinal) // ordinal == thu tu
 {
 	DeleteOldData(sizeof(keyDisplayCreaditClass) / sizeof(string), ordinal);
@@ -95,6 +96,9 @@ void OutputCreditClass(PTR_CLASS cc, int ordinal) // ordinal == thu tu
 	
 }
 
+*/
+
+/*
 void OutputListCredit(PTR_LIST_CLASS l)
 {
 	if(l == NULL) return;
@@ -118,7 +122,7 @@ bool DeleteCreditClassIsSuccess(PTR_LIST_CLASS &l, int id)
 {
 	int index = FindIndexClass(l, id);
 	
-	if(intdex == -1)return false;
+	if(index == -1)return false;
 	if(l->listClass[index]->listStudent.pHead != NULL) return false;
 	for(int i = index, i< l->n; i++)
 	{
@@ -232,4 +236,5 @@ void MenuManageCreditClass(PTR_LIST_CLASS &l)
 			}
 		}
 }
+*/
 #endif
