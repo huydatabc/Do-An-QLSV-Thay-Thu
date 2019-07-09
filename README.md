@@ -1,0 +1,3 @@
+# Do-An-QLSV-Thay-Thu
+init project
+Hiện tại đang develop Danh sách lớp tín chỉ, đọc ghi danh sách, validate dữ liệu, tạo menu ....
