@@ -187,5 +187,5 @@ bool ClearListStudent(LIST_STUDENT &l)
 	return true;
 }
 
-
+void inputStudent()
 #endif

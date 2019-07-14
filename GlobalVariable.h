@@ -1,7 +1,5 @@
 #pragma once
 
-int nSubject;
-
 
 
 int pageNowCreditClass = 1;

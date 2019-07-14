@@ -198,7 +198,8 @@ void InputCreditClass(PTR_LIST_CLASS &l, PTR_CREDIT_CLASS cc, bool isEdited) // 
 		{
 			case 0:
 				{
-					//  input id Class
+					// nhap id subject
+					CheckMoveAndValidateName(idSubject, isMoveUp, ordinal, isSave, 6);
 				}
 				
 			case 1:

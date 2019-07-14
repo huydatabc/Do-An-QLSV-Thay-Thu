@@ -1,3 +1,12 @@
+#include <conio.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <dos.h>
+#include <string.h>
+#include <windows.h>
+
+
 void SizeConsole(SHORT Width, SHORT height)
 {
 	SMALL_RECT SizeW = { 0,0,Width - 1,height - 1 };

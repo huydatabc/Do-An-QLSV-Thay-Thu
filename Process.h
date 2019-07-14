@@ -1,10 +1,12 @@
 #ifndef _PROCESS_H
 #define _PROCESS_H
-#include "CreditClass.h"
+#include <synchapi.h>
 #include <fstream>
-
+#include "Lib.h"
+#include<iostream>
 
 // ---- DTABASE -----
+/*
 void LoadCreditClass(PTR_LIST_CLASS &pListCreditClass)
 {
 	int sizeCreditClass = sizeof(CLASS) - sizeof(LIST_STUDENT);
@@ -57,5 +59,41 @@ void SaveCreditClass(PTR_LIST_CLASS pListCreditClass)
 	fileData.close();
 }
 
+*/
+
+
+void BaoLoi (char *s){
+  int x=wherex() , y=wherey();
+  Gotoxy (10,24);
+  std::cout <<s;
+  Sleep(4000);
+  Gotoxy(10,24);
+  clrscr();
+  Gotoxy(x,y);
+}
+
+//void SaveFile(list ds,char *filename) {
+// FILE * f;
+// if ((f=fopen(filename,"wb"))==NULL)
+// {  BaoLoi ("Loi mo file de ghi"); return ;
+// }
+// for (int i=0; i < ds.n; i++)
+//   fwrite (&ds.nodes[i], sizeof (Sinhvien), 1, f);
+// fclose(f);
+// BaoLoi ("Da ghi xong danh sach vao file");
+//
+//}
+//void OpenFile(list &ds, char *filename) {
+// FILE * f;
+// if ((f=fopen(filename,"rb"))==NULL)
+// {  BaoLoi ("Loi mo file de doc"); return ;
+// }
+// ds.n =0;
+// while  (fread (&ds.nodes[ds.n], sizeof (Sinhvien), 1, f)!=0)
+//    ds.n ++;
+// fclose(f);
+// BaoLoi ("Da load xong danh sach vao bo nho");
+//
+//}
 
 #endif
