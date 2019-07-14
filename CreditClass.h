@@ -3,6 +3,20 @@
 
 #include "Student.h"
 
+struct RegisterStudent
+{
+	char idStudent;
+	float point;
+}
+typedef struct RegisterStudent REGISTER_STUDENT;
+
+struct NodeRegisterStudent{
+	REGISTER_STUDENT _registerStudent;
+	struct NodeRegisterStudent* pNext;
+};
+typedef struct NodeRegisterStudent NODE_REGISTER_STUDENT;
+
+
 struct CreditClass{
 	unsigned int idClass;
 	char idSubject[10]; // ma mon hoc
@@ -12,15 +26,15 @@ struct CreditClass{
 	int studentMax;
 	int studentMin;
 	
-	LIST_STUDENT listStudent;	
+	NODE_REGISTER_STUDENT* listStudentRegister ;	
 };
-typedef struct CreditClass CLASS;
-typedef CLASS* PTR_CLASS;
+typedef struct CreditClass CREDIT_CLASS;
+typedef CREDIT_CLASS* PTR_CREDIT_CLASS;
 
 struct ListClass{
 	
-	int n = -1; // also index;
-	PTR_CLASS *listClass = new PTR_CLASS[MAX_CLASS];
+	int n;
+	PTR_CREDIT_CLASS *listClass = new PTR_CREDIT_CLASS[MAX_CLASS];
 };
 typedef struct ListClass LIST_CLASS;
 typedef LIST_CLASS* PTR_LIST_CLASS;
@@ -31,7 +45,7 @@ typedef LIST_CLASS* PTR_LIST_CLASS;
  
  
  // Tim kiem lop dua tren id -- find class with id
-PTR_CLASS FindClass(PTR_LIST_CLASS l, int id)
+PTR_CREDIT_CLASS FindClass(PTR_LIST_CLASS l, int id)
 {
 	if(l->n < 0) return NULL;
 	for(int i = 0; i< l->n; i++)
@@ -69,21 +83,21 @@ int FindIndexClass(PTR_LIST_CLASS l, int idClass)
 }
 
 //check when input
-bool DataCreditClassIsEmty(PTR_CLASS cc)
+bool DataCreditClassIsEmty(PTR_CREDIT_CLASS cc)
 {
 	if (cc->listStudent.n == 0) return true;
 	
 	return false;
 }
 // Hoa vi hai lop
-void SwapClass(PTR_CLASS &a, PTR_CLASS &b)
+void SwapClass(PTR_CREDIT_CLASS &a, PTR_CREDIT_CLASS &b)
 {
-	PTR_CLASS temp = a;
+	PTR_CREDIT_CLASS temp = a;
 	a = b;
 	b = temp;
 }
 
-/*
+
 void OutputCreditClass(PTR_CLASS cc, int ordinal) // ordinal == thu tu
 {
 	DeleteOldData(sizeof(keyDisplayCreaditClass) / sizeof(string), ordinal);
@@ -96,9 +110,9 @@ void OutputCreditClass(PTR_CLASS cc, int ordinal) // ordinal == thu tu
 	
 }
 
-*/
 
-/*
+
+
 void OutputListCredit(PTR_LIST_CLASS l)
 {
 	if(l == NULL) return;
@@ -108,15 +122,6 @@ void OutputListCredit(PTR_LIST_CLASS l)
 	}
 }
 
-void OutputListCreditPerPage(PTR_LIST_CLASS l, int indexBegin)
-{
-	if(l == NULL) return;
-	for (int i = 0; i + indexBegin <= l->n && i < QUANTITY_PER_PAGE; i++)
-		
-		OutputCreditClass(l->listClass[i + indexBegin], i * 2);
-	Gotoxy(X_PAGE, Y_PAGE);
-	cout << "Trang " << pageNowCreditClass << "/" << totalPageCreditClass;
-}
 
 bool DeleteCreditClassIsSuccess(PTR_LIST_CLASS &l, int id)
 {
@@ -133,7 +138,7 @@ bool DeleteCreditClassIsSuccess(PTR_LIST_CLASS &l, int id)
 	return true;
 }
 
-void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited)
+void InputCreditClass(PTR_LIST_CLASS &l, PTR_CREDIT_CLASS cc, bool isEdited) // nhap  Lop TC
 {
 	ShowCur(true);
 	
@@ -142,13 +147,15 @@ void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited)
 	bool isMoveUp = false;
 	bool isSave = false;
 	
-	unsigned int id = 0;
-	string idSubject; // ma mon hoc
+	unsigned int id;
+	string res = to_string(id);
+	char idSubject[10]; // ma mon hoc
 	int shoolYear; // nien khoa
 	int semester; // hoc ki
 	int group; // nhom
 	int studentMax;
 	int studentMin;
+	
 	bool idIsExist = false;
 	if(isEdited)
 	{
@@ -191,12 +198,13 @@ void InputCreditClass(PTR_LIST_CLASS &l, PTR_CLASS cc, bool isEdited)
 		{
 			case 0:
 				{
-				
+					//  input id Class
 				}
 				
 			case 1:
 				{
-					
+					CheckMoveAndValidateNumber(studentMax, isMoveUp, ordinal, isSave, 6, MAX_STUDENT);
+					break;
 				}
 			case 2:
 				

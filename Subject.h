@@ -3,68 +3,63 @@
 #include "Validate.h"
 #include "Display.h"
 struct Subject{
-	unsigned int id;
-	char idSubject[10]; // ma mon hoc
-	char nameSubject[30]; 
-	int numberTheory;
-	int numberPractice;
+	
+	char idSubject[10]; // ma mon hoc, key
+	char nameSubject[30]; // ten mon hoc
+	int numberTheory; // so tin chi ly thuyet
+	int numberPractice; // so tin chi thuc hanh
 };
 typedef struct Subject SUBJECT;
 
 struct NodeSubject{
-	SUBJECT data;
+	SUBJECT _subject;
 	struct NodeSubject *pLeft, *pRight;
 };
-typedef struct NodeSubject NODE_SUBJECT;
-typedef NODE_SUBJECT* TREE_SUBJECT;
+typedef struct NodeSubject *TREE_SUBJECT;
+TREE_SUBJECT binaryTree = NULL;
+TREE_SUBJECT rp;
 
 // ........................define tree subject...................
 
 // khoi tao cay nhi phan
-void InitTreeSubject(TREE_SUBJECT &t)
+void InitTreeSubject(TREE_SUBJECT &root)
 {
 	nSubject = -1; // bien global in file GlobalVariable.h
-	t = NULL;
+	root = NULL;
 }
 
 //check NULL
 bool IsEmty(TREE_SUBJECT t)
 {
-	return t == NULL;
+	return (t == NULL ? true : false);
 }
 
 // check ma mon hoc da ton tai
-bool CheckIdIsExisted( TREE_SUBJECT t, unsigned int id)
+bool CheckIdIsExisted( TREE_SUBJECT t, char *idSubject)
 {
 	if(t != NULL)
 	{
-		if(t->data.id == id)
+		if(strcmp(idSubject,t->_subject.idSubject)==0)
 			return true;
-		if(t->data.id > id)
-			CheckIdIsExisted(t->pLeft, id);
-		if(t->data.id < id)
-			CheckIdIsExisted(t->pRight, id);
+		else if(strcmp(idSubject,t->_subject.idSubject)<0)
+			CheckIdExisted(t->pLeft, idSubject);
+		else if(strcmp(idSubject,t->_subject.idSubject)>0)
+			CheckIdExisted(t->pRight, idSubject);
 	}
 	return false;
 }
 
-NODE_SUBJECT* FindSubject(TREE_SUBJECT t, unsigned int id)
+TREE_SUBJECT FindSubject(TREE_SUBJECT t, char *idSubject)
 {
-	if(t != NULL)
-	{
-		NODE_SUBJECT* p = t;
-		while(p !=NULL)
+	TREE_SUBJECT p = t;
+		while(p !=NULL && strcmp(p->_subject.idSubject,idSubject) !=0) //compare key 
 		{
-			if(p->data.id == id)
-				return p;
-			else if(p->data.id > id)
+			if(strcmp(idSubject,p->_subject.idSubject) < 0 ) 
 				p = p->pLeft;
-			else if(p->data.id < id)
+			else if(strcmp(idSubject,p->_subject.idSubject) > 0 )
 				p = p->pRight;
 		}
-	}
-	
-	return NULL;
+	return (p);
 }
 
 // them data vao tree;
@@ -73,21 +68,21 @@ void InsertSubjectToTree(TREE_SUBJECT &t, SUBJECT data)
 	// tree emty, data is root of tree
 	if(t == NULL)
 	{
-		NODE_SUBJECT* p = new NODE_SUBJECT;
-		p->data = data;
-		p->pLeft = p->pRight = NULL;
-		t = p;
+		t = new NodeSubject;
+		t->_subject = data;
+		t->pLeft = t->pRight = NULL;	
 	}
 	else
 	{
-		if(data.id < t->data.id)
+		if(strcmp(data.idSubject,t->_subject.idSubject) < 0 )
 			InsertSubjectToTree(t->pLeft, data);
-		else if(data.id > t->data.id)
+		else if(strcmp(data.idSubject,t->_subject.idSubject) > 0 )
 			InsertSubjectToTree(t->pRight, data);
 	}
 }
 
 // tim kiem va thay the
+/*
 void FindReplace(NODE_SUBJECT* &p, NODE_SUBJECT* &q)
 {
 	if(q->pRight != NULL)
@@ -100,7 +95,7 @@ void FindReplace(NODE_SUBJECT* &p, NODE_SUBJECT* &q)
 		q = q->pLeft;
 	}
 }
-
+*/
 // xoa Mon hoc trong tree
 bool IsDeletedSubject(TREE_SUBJECT &t, SUBJECT data)
 {

@@ -2,9 +2,9 @@
 #define _DISPLAY_H
 #include "CreditClass.h"
 // main menu
-string keyMainMenu[5] = {"Lop Tin Chi", "Sinh Vien" "Lop", "Mon Hoc", "Diem"};
-string keyStatistic[10] = {"Lop tin Chi", "Danh Sach Sinh Vien Lop TC"
-	, "danh sach sinh vien cua mot lop", "danh sach mon hoc", "Dang Ki Mon Hoc", "Bang Diem"};
+string keyMainMenu[6] = {"Lop Tin Chi", "Sinh Vien" "Lop", "Mon Hoc", "Diem", "Thong ke"};
+//string keyStatistic[10] = {"Lop tin Chi", "Danh Sach Sinh Vien Lop TC"
+	//, "danh sach sinh vien cua mot lop", "danh sach mon hoc", "Dang Ki Mon Hoc", "Bang Diem"};
 
 int xMainMenu[5] = { 10,45,80,115,145 };
 
@@ -103,7 +103,7 @@ int ChooseMainMenu(string key[], int nKey)
 
 string keyDisplayCreaditClass[7] = {"Ma Lop", "Ma Mon Hoc", "Nien Khoa", "Hoc Ki", "Nhom", "So Sinh Vien Max", "so Sinh Vien Min" };
 string keyDisplayStudent[7] = { "Ma Sinh Vien", "Ma Lop","Ho","Ten","Phai", "So DT", "Nam Nhap hoc" };
-
+string keyMonhoc[4] = {"Ma Mon Hoc", "Ten Mon Hoc", "So Tin Chi LT", "So TC TH"}
 int xKeyDisplay[6] = { 5,25,50,70,90,105 };
 
 
